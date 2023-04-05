@@ -1,17 +1,19 @@
 import React from "react";
-import styled from "styled-components";
+import { Route, Routes } from "react-router-dom";
 
 // imported components 
 import LandingPage from "./Components/landing-page/landing-page.component";
-// styled components 
-const AppContainer = styled.div `
-    
-`
+import TriviaPage from "./Components/trivia-page/trivia-page.component";
+
+
+
 const TriviaApp = () => {
+
     return (
-    <AppContainer>
-        <LandingPage /> 
-    </AppContainer>
+  <Routes>
+  <Route path="/" element={<LandingPage />} /> 
+  <Route path="/trivia" element={<TriviaPage />} /> 
+  </Routes>
     );
     
 };

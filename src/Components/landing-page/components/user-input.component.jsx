@@ -10,14 +10,15 @@ const TextField = styled.input `
     width: 400px;
     height: 40px;
     border-radius: 0.5rem;
-    border: none;
+    border: 1px solid orange; 
     text-align: center;
     font-size: 1rem;
 `
-const UserInput = () => {
+const UserInput = ( { handleChange } ) => {
+
     return (
         <UserInputContainer>
-<TextField type='text' placeholder='Enter a name' /> 
+<TextField onChange={handleChange} type='text' placeholder='Enter a name' /> 
         </UserInputContainer>
     );
 };

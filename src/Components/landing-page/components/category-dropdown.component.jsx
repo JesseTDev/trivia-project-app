@@ -1,21 +1,30 @@
-import React from "react";
+import React, { useContext } from "react";
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import styled from "styled-components";
+import { TriviaContext } from "../../../Context/TriviaAppContext";
 
 // styled components 
 const DropdownContainer = styled.div `
     width: 50%;
     align-items: center;
+    h3 {
+text-align: center;
+    }
 `
 
+
 const CategoryDropDown = () => {
+
+  const [trivaData] = useContext(TriviaContext); 
+
     return (
         <DropdownContainer>
-        <Box sx={{ minWidth: 120, padding: 3}}>
+          <h3>Choose a Category: </h3>
+        <Box sx={{ minWidth: 120}}>
         <FormControl fullWidth>
           <InputLabel id="demo-simple-select-label">Category</InputLabel>
           <Select
@@ -25,10 +34,10 @@ const CategoryDropDown = () => {
             label="Select Category"
             // onChange={handleChange}
           >
-            <MenuItem value={10}>General Knowledge</MenuItem>
-            <MenuItem value={20}>Science</MenuItem>
-            <MenuItem value={30}>Music</MenuItem>
-            <MenuItem value={30}>History</MenuItem>
+            <MenuItem value={null}>General Knowledge</MenuItem>
+            <MenuItem>Science</MenuItem>
+            <MenuItem>Music</MenuItem>
+            <MenuItem>History</MenuItem>
           </Select>
         </FormControl>
       </Box>

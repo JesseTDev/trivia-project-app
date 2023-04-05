@@ -7,12 +7,14 @@ export const TriviaContext = createContext();
 export const TriviaProvider = ( { children } ) => {
 
     const [triviaData, setTriviaData] = useState([]); 
+    const [loading, setLoading] = useState(false); 
 
     const getTriviaData = async () => {
         try {
+            setLoading(true); 
             const response = await axios.get('https://the-trivia-api.com/api/questions?limit=5')
             setTriviaData(response.data);
-            console.log(response.data); 
+            setLoading(false); 
         }
         catch (error) {
             console.log(error); 
@@ -24,7 +26,7 @@ export const TriviaProvider = ( { children } ) => {
     }, []); 
     
     return (
-    <TriviaContext.Provider value={triviaData}>
+    <TriviaContext.Provider value={[loading]}>
         { children }
     </TriviaContext.Provider>
     );

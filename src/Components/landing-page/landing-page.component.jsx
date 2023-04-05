@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 // imported components 
 import UserInput from "./components/user-input.component";
 import CategoryDropDown from "./components/category-dropdown.component";
 
 
-// stylerd components
+// styled components
 const LandingPageContainer = styled.div `
 height: 100vh;
 justify-content: center;
@@ -21,26 +22,50 @@ align-items: center;
 
 const Button = styled.button `
   cursor: pointer;
+  margin: 1.4rem;
   width: 150px;
   height: 40px;
   border-radius: 20px;
   border: orange 1px solid; 
   background-color: transparent;
   transition: 0.3s ease;
+  font-weight: bold;
   &:hover {
-    background-color: black;
+    background-color: orange; 
     color: white;
     border: none;
   }
+  &:active {
+    background-color: #eca117;
+  }
 `
+
 const LandingPage = () => {
+
+  const navigate = useNavigate(); 
+
+    const [username, setUsername] = useState({name: ""}); 
+
+    const handleChange = (e) => {
+        setUsername({name: e.target.value}); 
+    }; 
+
+    const submitHandler = () => {
+      setUsername({...username, name: username.name})
+      navigate('/trivia'); 
+    }; 
+
+    const saveUserNames = localStorage.setItem('storedUsernames', JSON.stringify(username)); 
+
+    console.log(saveUserNames)
+
     return (
       <LandingPageContainer>
 
         <h1>Welcome To Trivia!</h1>
-        <UserInput /> 
+        <UserInput handleChange={handleChange} /> 
         <CategoryDropDown /> 
-     <Button>Begin Trivia!</Button>
+     <Button onClick={submitHandler}>Begin Trivia!</Button>
 
       </LandingPageContainer>
     );
