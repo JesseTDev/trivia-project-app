@@ -1,11 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 
+const LandingPageContainer = styled.div `
+    
+`
 const LandingPage = () => {
     return (
-        <div>
-
-        </div>
+      <LandingPageContainer>
+        <h1>Welcome To Trivia!</h1>
+      </LandingPageContainer>
     );
 }; 
 
