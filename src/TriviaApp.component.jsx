@@ -13,6 +13,7 @@ const TriviaApp = () => {
         <LandingPage /> 
     </AppContainer>
     );
+    
 };
 
 export default TriviaApp; 
