@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
 // imported components 
 import UserInput from "./components/user-input.component";
 import CategoryDropDown from "./components/category-dropdown.component";
+import { TriviaContext } from "../../Context/TriviaAppContext";
 
 
 // styled components
@@ -39,19 +40,19 @@ const Button = styled.button `
     background-color: #eca117;
   }
 `
-
 const LandingPage = () => {
 
   const navigate = useNavigate(); 
 
-    const [username, setUsername] = useState({name: ""}); 
+    const {username, setUsername} = useContext(TriviaContext); 
 
     const handleChange = (e) => {
-       setUsername(e.target.value)
+       setUsername({name: e.target.value})
     }; 
 
-    const submitHandler = () => {
-    
+    const submitHandler = (e) => {
+      e.preventDefault(); 
+     setUsername({...username, name: username.name})
       navigate('/trivia'); 
     }; 
 

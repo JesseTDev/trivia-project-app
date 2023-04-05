@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -6,6 +6,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import styled from "styled-components";
 import { TriviaContext } from "../../../Context/TriviaAppContext";
+
 
 // styled components 
 const DropdownContainer = styled.div `
@@ -19,11 +20,20 @@ text-align: center;
 
 const CategoryDropDown = () => {
 
-  const [trivaData] = useContext(TriviaContext); 
+  const [userCategory, setUserCategory] = useState([]); 
 
+  const {triviaData} = useContext(TriviaContext); 
+
+  const selectCategoryHandler = (e) => {
+    setUserCategory(e.target.value); 
+  }; 
+
+
+  
     return (
         <DropdownContainer>
-          <h3>Choose a Category: </h3>
+
+          <h3>Choose a category: </h3>
         <Box sx={{ minWidth: 120}}>
         <FormControl fullWidth>
           <InputLabel id="demo-simple-select-label">Category</InputLabel>
@@ -34,11 +44,17 @@ const CategoryDropDown = () => {
             label="Select Category"
             // onChange={handleChange}
           >
-    
-            <MenuItem value={null}>General Knowledge</MenuItem>
-            <MenuItem>Science</MenuItem>
-            <MenuItem>Music</MenuItem>
-            <MenuItem>History</MenuItem>
+          
+          {triviaData?.map((category) => { return (
+           
+           <MenuItem onClick={selectCategoryHandler} key={category.id} value={category.category}>
+            {category.category}
+           </MenuItem>
+              
+             )})}
+           
+     
+         
           </Select>
         </FormControl>
       </Box>

@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
+// styled components
 const UserInputContainer = styled.div `
     display: flex;
     justify-content: center;

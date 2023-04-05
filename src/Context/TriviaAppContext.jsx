@@ -5,28 +5,31 @@ export const TriviaContext = createContext();
 
 
 export const TriviaProvider = ( { children } ) => {
-
     const [triviaData, setTriviaData] = useState([]); 
     const [loading, setLoading] = useState(false); 
+    const [username, setUsername] = useState({name: ''}); 
+
+
 
     const getTriviaData = async () => {
         try {
-            setLoading(true); 
-            const response = await axios.get('https://the-trivia-api.com/api/questions?limit=5')
-            setTriviaData(response.data);
-            setLoading(false); 
+            setLoading(true)
+            const response = await axios.get('https://the-trivia-api.com/api/questions?categories=geography,history,music,general_knowledge,science&limit=4&difficulty=medium')
+            setTriviaData(response.data)
+            setLoading(false)
         }
         catch (error) {
-            console.log(error); 
-        };
+            console.log(error)
+        }
     }; 
 
+
     useEffect(() => {
-        getTriviaData();
+        getTriviaData(); 
     }, []); 
-    
+  
     return (
-    <TriviaContext.Provider value={[loading]}>
+    <TriviaContext.Provider value={{triviaData, loading, username, setUsername}}>
         { children }
     </TriviaContext.Provider>
     );
