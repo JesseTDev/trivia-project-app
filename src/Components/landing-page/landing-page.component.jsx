@@ -47,17 +47,15 @@ const LandingPage = () => {
     const [username, setUsername] = useState({name: ""}); 
 
     const handleChange = (e) => {
-        setUsername({name: e.target.value}); 
+       setUsername(e.target.value)
     }; 
 
     const submitHandler = () => {
-      setUsername({...username, name: username.name})
+    
       navigate('/trivia'); 
     }; 
 
-    const saveUserNames = localStorage.setItem('storedUsernames', JSON.stringify(username)); 
-
-    console.log(saveUserNames)
+    
 
     return (
       <LandingPageContainer>

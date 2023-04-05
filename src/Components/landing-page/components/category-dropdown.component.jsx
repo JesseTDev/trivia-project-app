@@ -34,6 +34,7 @@ const CategoryDropDown = () => {
             label="Select Category"
             // onChange={handleChange}
           >
+    
             <MenuItem value={null}>General Knowledge</MenuItem>
             <MenuItem>Science</MenuItem>
             <MenuItem>Music</MenuItem>
