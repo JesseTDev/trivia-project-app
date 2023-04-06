@@ -20,21 +20,24 @@ text-align: center;
 
 const CategoryDropDown = () => {
 
-  const [userCategory, setUserCategory] = useState([]); 
+  const [selectedCategory, setSelectedCategory] = useState(''); 
 
   const {triviaData} = useContext(TriviaContext); 
 
+
   const selectCategoryHandler = (e) => {
-    setUserCategory(e.target.value); 
+    setSelectedCategory(e.target.value); 
+    console.log(selectedCategory)
   }; 
 
+ 
 
   
     return (
         <DropdownContainer>
 
           <h3>Choose a category: </h3>
-        <Box sx={{ minWidth: 120}}>
+        <Box sx={{ minWidth: 120 }}>
         <FormControl fullWidth>
           <InputLabel id="demo-simple-select-label">Category</InputLabel>
           <Select
@@ -45,7 +48,7 @@ const CategoryDropDown = () => {
             // onChange={handleChange}
           >
           
-          {triviaData?.map((category) => { return (
+          {triviaData.map((category) => { return (
            
            <MenuItem onClick={selectCategoryHandler} key={category.id} value={category.category}>
             {category.category}

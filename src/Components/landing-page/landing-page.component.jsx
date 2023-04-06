@@ -31,6 +31,7 @@ const Button = styled.button `
   background-color: transparent;
   transition: 0.3s ease;
   font-weight: bold;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   &:hover {
     background-color: orange; 
     color: white;
