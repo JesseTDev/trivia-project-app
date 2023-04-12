@@ -53,7 +53,7 @@ const TriviaCard = () => {
     return (
       <Container>
 <TriviaCardContainer>
-        <Question>What is blah blah?</Question>
+        <Question>What is blah blah</Question>
     <AnswerOptionContainer>
         <AnswerOptions>sdfkls</AnswerOptions>
         <AnswerOptions>dksfds</AnswerOptions>

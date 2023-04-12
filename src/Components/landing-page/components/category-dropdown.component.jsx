@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -20,19 +20,37 @@ text-align: center;
 
 const CategoryDropDown = () => {
 
-  const [selectedCategory, setSelectedCategory] = useState(''); 
+  const {selectedCategory, setSelectedCategory} = useContext(TriviaContext);  
 
   const {triviaData} = useContext(TriviaContext); 
 
+
+  const getCategorgryNames = () => {
+const existingArray = triviaData.map((category) => category.category)
+const arrayToMap = existingArray.filter((element, index) => {
+  return existingArray.indexOf(element) === index;
+});
+return arrayToMap
+  }
+
+  
+
+  const triviaCategories = () => {
+    const categories = getCategorgryNames(); 
+    return categories.map((category) => {
+      return (
+        <MenuItem key={category} value={category}>
+          {category}
+        </MenuItem>
+      );
+    });
+  };
 
   const selectCategoryHandler = (e) => {
     setSelectedCategory(e.target.value); 
     console.log(selectedCategory)
   }; 
 
- 
-
-  
     return (
         <DropdownContainer>
 
@@ -41,23 +59,13 @@ const CategoryDropDown = () => {
         <FormControl fullWidth>
           <InputLabel id="demo-simple-select-label">Category</InputLabel>
           <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            // value={age}
-            label="Select Category"
-            // onChange={handleChange}
-          >
-          
-          {triviaData.map((category) => { return (
-           
-           <MenuItem onClick={selectCategoryHandler} key={category.id} value={category.category}>
-            {category.category}
-           </MenuItem>
-              
-             )})}
-           
-     
-         
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={selectedCategory || ''}
+          label="Select Category"
+          onChange={selectCategoryHandler}
+>
+          {triviaCategories()}
           </Select>
         </FormControl>
       </Box>

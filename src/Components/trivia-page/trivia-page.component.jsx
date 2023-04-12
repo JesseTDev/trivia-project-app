@@ -6,8 +6,6 @@ import { TriviaContext } from "../../Context/TriviaAppContext";
 import Loading from "../../Shared/components/Loading.component";
 import TriviaCard from "./components/triviaCard.component";
 
-import quiz from "../../fakeData";
-
 // styled components 
 const TriviaPageContainer = styled.div `
     display: flex;
@@ -22,13 +20,13 @@ const TriviaPage = () => {
 
     const { loading } = useContext(TriviaContext); 
 
-    const [fakeData, setFakeData] = useState(quiz); 
+    
 
     return (
 
        <TriviaPageContainer>
         <h1>Trivia Questions:</h1>
-    {loading ? <Loading /> : <TriviaCard fakeData={fakeData} />}
+    {loading ? <Loading /> : <TriviaCard />}
     </TriviaPageContainer>
     );
 };

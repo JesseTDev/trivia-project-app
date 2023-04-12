@@ -8,9 +8,9 @@ export const TriviaProvider = ( { children } ) => {
     const [triviaData, setTriviaData] = useState([]); 
     const [loading, setLoading] = useState(false); 
     const [username, setUsername] = useState({name: ''}); 
+    const [selectedCategory, setSelectedCategory] = useState([]); 
 
-
-
+    console.log(selectedCategory)
     const getTriviaData = async () => {
         try {
             setLoading(true)
@@ -29,7 +29,7 @@ export const TriviaProvider = ( { children } ) => {
     }, []); 
   
     return (
-    <TriviaContext.Provider value={{triviaData, loading, username, setUsername}}>
+    <TriviaContext.Provider value={{triviaData, loading, username, setUsername, selectedCategory, setSelectedCategory}}>
         { children }
     </TriviaContext.Provider>
     );
