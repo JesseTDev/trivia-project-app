@@ -1,19 +1,20 @@
-import React from "react";
-import { Route, Routes } from "react-router-dom";
-
+import React, {useContext, useState} from "react";
+import { TriviaContext } from "./Context/TriviaAppContext";
 // imported components 
 import LandingPage from "./Components/landing-page/landing-page.component";
 import TriviaPage from "./Components/trivia-page/trivia-page.component";
 
 
 
+
 const TriviaApp = () => {
 
+  const {submit} = useContext(TriviaContext); 
+
     return (
-  <Routes>
-  <Route path="/" element={<LandingPage />} /> 
-  <Route path="/trivia" element={<TriviaPage />} /> 
-  </Routes>
+  <div>
+   {submit ?  <TriviaPage /> : <LandingPage />}
+  </div>
     );
     
 };

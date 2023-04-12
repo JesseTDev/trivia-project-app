@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
 
 // imported components 
 import UserInput from "./components/user-input.component";
@@ -43,9 +42,9 @@ const Button = styled.button `
 `
 const LandingPage = () => {
 
-  const navigate = useNavigate(); 
 
     const {username, setUsername} = useContext(TriviaContext); 
+    const {setSubmit} = useContext(TriviaContext); 
 
     const handleChange = (e) => {
        setUsername({name: e.target.value})
@@ -54,7 +53,8 @@ const LandingPage = () => {
     const submitHandler = (e) => {
       e.preventDefault(); 
      setUsername({...username, name: username.name})
-      navigate('/trivia'); 
+     setSubmit(true); 
+
     }; 
 
     

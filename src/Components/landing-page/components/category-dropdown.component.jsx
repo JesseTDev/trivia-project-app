@@ -23,7 +23,7 @@ const CategoryDropDown = () => {
   const {selectedCategory, setSelectedCategory} = useContext(TriviaContext);  
 
   const {triviaData} = useContext(TriviaContext); 
-
+ 
 
   const getCategorgryNames = () => {
 const existingArray = triviaData.map((category) => category.category)
