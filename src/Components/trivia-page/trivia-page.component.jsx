@@ -12,13 +12,11 @@ const TriviaPageContainer = styled.div `
     justify-content: center; 
     flex-direction: column; 
     height: 100vh;
-    h1 {
-        text-align: center;
-    }
+    text-align: center; 
 `
 const TriviaPage = () => {
 
-    const { loading } = useContext(TriviaContext); 
+    const { loading, username, selectedCategory } = useContext(TriviaContext); 
 
     
 
@@ -26,6 +24,9 @@ const TriviaPage = () => {
 
        <TriviaPageContainer>
         <h1>Trivia Questions:</h1>
+        <h2>User: {username.name}</h2>
+        <h2>Category: {selectedCategory}</h2>
+        <h3>Trivia Points: 0</h3>
     {loading ? <Loading /> : <TriviaCard />}
     </TriviaPageContainer>
     );

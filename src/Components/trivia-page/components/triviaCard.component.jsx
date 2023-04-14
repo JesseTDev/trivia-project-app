@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 
 
@@ -50,10 +50,12 @@ const AnswerOptions = styled.div `
   }
 `
 const TriviaCard = () => {
+
+
     return (
       <Container>
 <TriviaCardContainer>
-        <Question>What is blah blah</Question>
+        <Question>what is blah blah</Question>
     <AnswerOptionContainer>
         <AnswerOptions>sdfkls</AnswerOptions>
         <AnswerOptions>dksfds</AnswerOptions>

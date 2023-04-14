@@ -8,7 +8,7 @@ import { TriviaContext } from "../../Context/TriviaAppContext";
 
 
 // styled components
-const LandingPageContainer = styled.div `
+const LandingPageContainer = styled.div`
 height: 100vh;
 justify-content: center;
 display: flex;
@@ -20,7 +20,7 @@ align-items: center;
     }
 `
 
-const Button = styled.button `
+const Button = styled.button`
   cursor: pointer;
   margin: 1.4rem;
   width: 150px;
@@ -43,32 +43,33 @@ const Button = styled.button `
 const LandingPage = () => {
 
 
-    const {username, setUsername} = useContext(TriviaContext); 
-    const {setSubmit} = useContext(TriviaContext); 
+  const { username, setUsername } = useContext(TriviaContext);
+  const { setSubmit } = useContext(TriviaContext);
 
-    const handleChange = (e) => {
-       setUsername({name: e.target.value})
-    }; 
+  const handleChange = (e) => {
+    setUsername({ name: e.target.value })
+  };
 
-    const submitHandler = (e) => {
-      e.preventDefault(); 
-     setUsername({...username, name: username.name})
-     setSubmit(true); 
 
-    }; 
+  const submitHandler = (e) => {
+    e.preventDefault();
+    setUsername({ ...username, name: username.name })
+    setSubmit(true);
 
-    
+  };
 
-    return (
-      <LandingPageContainer>
 
-        <h1>Welcome To Trivia!</h1>
-        <UserInput handleChange={handleChange} /> 
-        <CategoryDropDown /> 
-     <Button onClick={submitHandler}>Begin Trivia!</Button>
 
-      </LandingPageContainer>
-    );
-}; 
+  return (
+    <LandingPageContainer>
+
+      <h1>Welcome To Trivia!</h1>
+      <UserInput handleChange={handleChange} />
+      <CategoryDropDown />
+      <Button onClick={submitHandler}>Begin Trivia!</Button>
+
+    </LandingPageContainer>
+  );
+};
 
 export default LandingPage; 
