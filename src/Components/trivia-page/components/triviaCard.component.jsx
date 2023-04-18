@@ -1,6 +1,5 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import styled from "styled-components";
-
 
 // styled components 
 const Container = styled.div `
@@ -49,18 +48,19 @@ const AnswerOptions = styled.div `
     background-color: #fcc653;
   }
 `
-const TriviaCard = () => {
+const TriviaCard = ({question}) => {
 
+  const mergedAnswers = [question.correctAnswer, ...question.incorrectAnswers].sort(() => Math.random() - 0.5); 
+
+
+  console.log('mergedAnswers', mergedAnswers)
 
     return (
       <Container>
 <TriviaCardContainer>
-        <Question>what is blah blah</Question>
+        <Question>{question.question}</Question>
     <AnswerOptionContainer>
-        <AnswerOptions>sdfkls</AnswerOptions>
-        <AnswerOptions>dksfds</AnswerOptions>
-        <AnswerOptions>lasdas</AnswerOptions>
-        <AnswerOptions>Skgkg</AnswerOptions>
+      {mergedAnswers.map((answer) => <AnswerOptions>{answer}</AnswerOptions>)}
     </AnswerOptionContainer>
 </TriviaCardContainer>
 </Container>

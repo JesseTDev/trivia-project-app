@@ -16,9 +16,13 @@ const TriviaPageContainer = styled.div `
 `
 const TriviaPage = () => {
 
-    const { loading, username, selectedCategory } = useContext(TriviaContext); 
+    const { loading, username, selectedCategory, triviaData } = useContext(TriviaContext); 
 
-    
+    const [questionIndex, setQuestionIndex] = useState(0); 
+
+    const nextQuestion = () => {
+        setQuestionIndex(questionIndex + 1)
+    }
 
     return (
 
@@ -27,7 +31,8 @@ const TriviaPage = () => {
         <h2>User: {username.name}</h2>
         <h2>Category: {selectedCategory}</h2>
         <h3>Trivia Points: 0</h3>
-    {loading ? <Loading /> : <TriviaCard />}
+    {loading ? <Loading /> : <TriviaCard question={triviaData[questionIndex]}/>}
+    <button onClick={nextQuestion}>next</button>
     </TriviaPageContainer>
     );
 };
