@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-
+import { TriviaContext } from "../../Context/TriviaAppContext";
 // imported components 
 import UserInput from "./components/user-input.component";
 import CategoryDropDown from "./components/category-dropdown.component";
-import { TriviaContext } from "../../Context/TriviaAppContext";
+import DifficultyDropDown from "./components/difficulty-dropdown.component";
+
 
 
 // styled components
@@ -66,6 +67,7 @@ const LandingPage = () => {
       <h1>Welcome To Trivia!</h1>
       <UserInput handleChange={handleChange} />
       <CategoryDropDown />
+      <DifficultyDropDown /> 
       <Button onClick={submitHandler}>Begin Trivia!</Button>
 
     </LandingPageContainer>
