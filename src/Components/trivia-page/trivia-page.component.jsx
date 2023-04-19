@@ -1,10 +1,12 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import styled from "styled-components";
 import { TriviaContext } from "../../Context/TriviaAppContext";
 
 // import components 
 import Loading from "../../Shared/components/Loading.component";
 import TriviaCard from "./components/triviaCard.component";
+import CompletedTriviaPage from "../completed-page/components/completedTrivia.component";
+import TriviaInfo from "./components/trivia.info.component";
 
 // styled components 
 const TriviaPageContainer = styled.div `
@@ -13,28 +15,66 @@ const TriviaPageContainer = styled.div `
     flex-direction: column; 
     height: 100vh;
     text-align: center; 
+    button {
+        cursor: pointer; 
+        width: 200px;
+        height: 100px;
+        align-self: center;
+        margin-bottom: 15%;
+        transition: 0.3s ease; 
+        border: 1px solid orange; 
+        border-radius: 1rem; 
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        &:hover {
+            background-color: #2cc22c; 
+            border: none;
+        }
+        &:active {
+            background-color:  #23a323; 
+        }
+    }
+`
+const TriviaStopClock = styled.h2 `
+    font-size: 2rem; 
+    color: #eb3131; 
 `
 
 const TriviaPage = () => {
 
-    const { loading, username, selectedCategory, triviaData, selectedDifficulty } = useContext(TriviaContext); 
+    const { loading, username, selectedCategory, triviaData, selectedDifficulty, score } = useContext(TriviaContext); 
 
     const [questionIndex, setQuestionIndex] = useState(0); 
+    const [timerId, setTimerId] = useState(null);
+    const [remainingTime, setRemainingTime] = useState(10);
+    const [completed, setCompleted] = useState(false); 
 
     const nextQuestion = () => {
-        setQuestionIndex(questionIndex + 1)
-    }
+        setQuestionIndex((questionIndex) => questionIndex + 1);
+        setRemainingTime(10);
+      };
+
+      useEffect(() => {
+        const timer = setTimeout(() => {
+          if (questionIndex < triviaData.length - 1) {
+            setQuestionIndex(questionIndex + 1);
+            setRemainingTime(10);
+          } else {
+            setCompleted(true);
+          }
+        }, remainingTime * 1000);
+      
+        return () => clearTimeout(timer);
+      }, [questionIndex, remainingTime, triviaData, setCompleted]);
+
 
     return (
 
        <TriviaPageContainer>
-        <h1>Trivia Questions:</h1>
-        <h2>User: {username.name}</h2>
-        <h2>Category: {selectedCategory}</h2>
-        <h2>Difficulty: {selectedDifficulty}</h2>
-        <h3>Trivia Points: 0</h3>
-    {loading ? <Loading /> : <TriviaCard question={triviaData[questionIndex]}/>}
-    <button onClick={nextQuestion}>next</button>
+        <TriviaInfo /> 
+        <TriviaStopClock>Timer: {remainingTime}'s</TriviaStopClock>
+    {loading ? <Loading /> : <TriviaCard nextQuestion={nextQuestion} question={triviaData[questionIndex]}/>}
+    {completed ? <CompletedTriviaPage /> : null}
+    <button onClick={nextQuestion}>Next Question</button>
     </TriviaPageContainer>
     );
 };

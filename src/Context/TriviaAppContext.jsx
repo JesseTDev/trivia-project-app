@@ -11,7 +11,7 @@ export const TriviaProvider = ({ children }) => {
     const [selectedCategory, setSelectedCategory] = useState([]);
     const [selectedDifficulty, setSelectedDifficulty] = useState('medium'); 
     const [submit, setSubmit] = useState(false);
-
+    const [score, setScore] = useState(0); 
 
     console.log(triviaData)
     console.log(selectedCategory)
@@ -46,7 +46,9 @@ export const TriviaProvider = ({ children }) => {
              submit, 
              setSubmit,
              selectedDifficulty,
-             setSelectedDifficulty
+             setSelectedDifficulty,
+             score,
+             setScore
               }}>
             {children}
         </TriviaContext.Provider>

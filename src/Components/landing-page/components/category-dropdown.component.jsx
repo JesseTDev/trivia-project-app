@@ -18,7 +18,7 @@ text-align: center;
     }
 `
 
-const categories = ['History', 'Science', 'Arts & Literature', 'Music', 'General Knowledge', 'Geography', 'Sport & Leisure', 'Film & TV'];
+const categories = ['History', 'Science', 'Music', 'General Knowledge', 'Geography']; 
 
 const CategoryDropDown = () => {
 

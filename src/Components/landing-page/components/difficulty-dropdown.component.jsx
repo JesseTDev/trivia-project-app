@@ -25,7 +25,7 @@ const DifficultyDropDown = () => {
     
     };
 
-    console.log(selectedDifficulty)
+  
     return (
         <DropdownContainer>
 

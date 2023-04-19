@@ -1,5 +1,6 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
+import { TriviaContext } from "../../../Context/TriviaAppContext";
 
 // styled components 
 const Container = styled.div `
@@ -48,19 +49,41 @@ const AnswerOptions = styled.div `
     background-color: #fcc653;
   }
 `
+
+const CorrectAnswer = styled(AnswerOptions) `
+  button {
+   background-colour: #0bc30b; 
+  }
+`
+
+const IncorrectAnswer = styled(AnswerOptions) `
+  button {
+    background-colour: #e62323; 
+  }
+`
+
 const TriviaCard = ({question}) => {
+
+  const [selectedAnswer, setSelectedAnswer] = useState(null); 
+  const {score, setScore} = useContext(TriviaContext); 
+  
 
   const mergedAnswers = [question.correctAnswer, ...question.incorrectAnswers].sort(() => Math.random() - 0.5); 
 
+ 
+  const selectAnswerHandler = (answer) => {
+    if(answer === question.correctAnswer) {
+      setScore(score + 1); 
+    }; 
+  }; 
 
-  console.log('mergedAnswers', mergedAnswers)
 
     return (
       <Container>
 <TriviaCardContainer>
         <Question>{question.question}</Question>
     <AnswerOptionContainer>
-      {mergedAnswers.map((answer) => <AnswerOptions>{answer}</AnswerOptions>)}
+      {mergedAnswers.map((answer) => <AnswerOptions key={answer} onClick={() => selectAnswerHandler(answer)}>{answer}</AnswerOptions>)}
     </AnswerOptionContainer>
 </TriviaCardContainer>
 </Container>
