@@ -41,10 +41,9 @@ const TriviaStopClock = styled.h2 `
 
 const TriviaPage = () => {
 
-    const { loading, username, selectedCategory, triviaData, selectedDifficulty, score } = useContext(TriviaContext); 
+    const { loading, triviaData } = useContext(TriviaContext); 
 
     const [questionIndex, setQuestionIndex] = useState(0); 
-    const [timerId, setTimerId] = useState(null);
     const [remainingTime, setRemainingTime] = useState(10);
     const [completed, setCompleted] = useState(false); 
 
@@ -54,18 +53,21 @@ const TriviaPage = () => {
       };
 
       useEffect(() => {
-        const timer = setTimeout(() => {
-          if (questionIndex < triviaData.length - 1) {
-            setQuestionIndex(questionIndex + 1);
-            setRemainingTime(10);
+        const timer = setInterval(() => {
+          if (remainingTime > 0) {
+            setRemainingTime(remainingTime - 1);
           } else {
-            setCompleted(true);
+            if (questionIndex < triviaData.length - 1) {
+              setQuestionIndex(questionIndex + 1);
+              setRemainingTime(10);
+            } else {
+              setCompleted(true);
+            }
           }
-        }, remainingTime * 1000);
+        }, 1000);
       
-        return () => clearTimeout(timer);
-      }, [questionIndex, remainingTime, triviaData, setCompleted]);
-
+        return () => clearInterval(timer);
+    }, [questionIndex, remainingTime, triviaData, setCompleted]);
 
     return (
 
@@ -73,7 +75,7 @@ const TriviaPage = () => {
         <TriviaInfo /> 
         <TriviaStopClock>Timer: {remainingTime}'s</TriviaStopClock>
     {loading ? <Loading /> : <TriviaCard nextQuestion={nextQuestion} question={triviaData[questionIndex]}/>}
-    {completed ? <CompletedTriviaPage /> : null}
+    {completed && <CompletedTriviaPage />}
     <button onClick={nextQuestion}>Next Question</button>
     </TriviaPageContainer>
     );

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { TriviaContext } from "../../../Context/TriviaAppContext";
 
@@ -65,10 +65,9 @@ const IncorrectAnswer = styled(AnswerOptions) `
 const TriviaCard = ({question}) => {
 
   const [selectedAnswer, setSelectedAnswer] = useState(null); 
+  const [mergedAnswers, setMergedAnswers] = useState([]); 
   const {score, setScore} = useContext(TriviaContext); 
   
-
-  const mergedAnswers = [question.correctAnswer, ...question.incorrectAnswers].sort(() => Math.random() - 0.5); 
 
  
   const selectAnswerHandler = (answer) => {
@@ -77,6 +76,10 @@ const TriviaCard = ({question}) => {
     }; 
   }; 
 
+  useEffect(() => {
+    const mergedAnswers = [question.correctAnswer, ...question.incorrectAnswers].sort(() => Math.random() - 0.5); 
+    setMergedAnswers(mergedAnswers);
+  }, [question]);
 
     return (
       <Container>

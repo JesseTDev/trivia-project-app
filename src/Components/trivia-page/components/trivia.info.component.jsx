@@ -7,7 +7,7 @@ const TriviaInfoContainer = styled.div `
 `
 
 const TriviaInfo = () => {
-    const { loading, username, selectedCategory, triviaData, selectedDifficulty, score } = useContext(TriviaContext); 
+    const { username, selectedCategory, selectedDifficulty, score } = useContext(TriviaContext); 
 
     return (
  <TriviaInfoContainer>
