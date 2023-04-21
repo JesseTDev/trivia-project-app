@@ -41,52 +41,51 @@ const AnswerOptions = styled.div `
   text-align: center;  
   border: 1px solid orange; 
   border-radius: 4px;
+  background-color: ${props => props.inputColor && 'red'};
   cursor: pointer;
   transition: 0.2s ease; 
   &:hover {
     color: white; 
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; 
     background-color: #fcc653;
   }
 `
+                                             
 
-const CorrectAnswer = styled(AnswerOptions) `
-  button {
-   background-colour: #0bc30b; 
-  }
-`
-
-const IncorrectAnswer = styled(AnswerOptions) `
-  button {
-    background-colour: #e62323; 
-  }
-`
-
-const TriviaCard = ({question}) => {
+const TriviaCard = ({question, nextQuestion}) => {
 
   const [selectedAnswer, setSelectedAnswer] = useState(null); 
+  const [showInccorectColor, setShowIncorrectColor] = useState(false); 
   const [mergedAnswers, setMergedAnswers] = useState([]); 
   const {score, setScore} = useContext(TriviaContext); 
-  
+
 
  
   const selectAnswerHandler = (answer) => {
     if(answer === question.correctAnswer) {
       setScore(score + 1); 
-    }; 
+      setSelectedAnswer(true);
+      nextQuestion() 
+    } if(answer !== question.correctAnswer) {
+      console.log('fire')
+      setShowIncorrectColor(true)
+    }
   }; 
+
+  console.log(showInccorectColor)
 
   useEffect(() => {
     const mergedAnswers = [question.correctAnswer, ...question.incorrectAnswers].sort(() => Math.random() - 0.5); 
     setMergedAnswers(mergedAnswers);
   }, [question]);
 
+
     return (
       <Container>
 <TriviaCardContainer>
         <Question>{question.question}</Question>
     <AnswerOptionContainer>
-      {mergedAnswers.map((answer) => <AnswerOptions key={answer} onClick={() => selectAnswerHandler(answer)}>{answer}</AnswerOptions>)}
+      {mergedAnswers.map((answer) => <AnswerOptions  inputColor={showInccorectColor} key={answer} onClick={() => {selectAnswerHandler(answer)}}>{answer}</AnswerOptions>)}
     </AnswerOptionContainer>
 </TriviaCardContainer>
 </Container>

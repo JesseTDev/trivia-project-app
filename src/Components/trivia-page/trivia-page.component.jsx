@@ -8,6 +8,7 @@ import TriviaCard from "./components/triviaCard.component";
 import CompletedTriviaPage from "../completed-page/components/completedTrivia.component";
 import TriviaInfo from "./components/trivia.info.component";
 
+
 // styled components 
 const TriviaPageContainer = styled.div `
     display: flex;
@@ -34,6 +35,7 @@ const TriviaPageContainer = styled.div `
         }
     }
 `
+
 const TriviaStopClock = styled.h2 `
     font-size: 2rem; 
     color: #eb3131; 
@@ -44,10 +46,15 @@ const TriviaPage = () => {
     const { loading, triviaData } = useContext(TriviaContext); 
 
     const [questionIndex, setQuestionIndex] = useState(0); 
+    const [quizCompleted, setQuizCompleted] = useState(false); 
     const [remainingTime, setRemainingTime] = useState(10);
     const [completed, setCompleted] = useState(false); 
 
     const nextQuestion = () => {
+        if(questionIndex === 5) {
+          setQuizCompleted(true)
+           return
+        }
         setQuestionIndex((questionIndex) => questionIndex + 1);
         setRemainingTime(10);
       };
@@ -72,11 +79,13 @@ const TriviaPage = () => {
     return (
 
        <TriviaPageContainer>
-        <TriviaInfo /> 
-        <TriviaStopClock>Timer: {remainingTime}'s</TriviaStopClock>
-    {loading ? <Loading /> : <TriviaCard nextQuestion={nextQuestion} question={triviaData[questionIndex]}/>}
-    {completed && <CompletedTriviaPage />}
-    <button onClick={nextQuestion}>Next Question</button>
+        {/* completed page  */}
+        {quizCompleted ? <CompletedTriviaPage /> :
+        <> <TriviaInfo /> 
+         <TriviaStopClock>Timer: {remainingTime}'s</TriviaStopClock>
+     {loading ? <Loading /> : <TriviaCard nextQuestion={nextQuestion} question={triviaData[questionIndex]}/>}
+     {completed && <CompletedTriviaPage />}
+     <button onClick={nextQuestion}>Next Question</button> </>}
     </TriviaPageContainer>
     );
 };
