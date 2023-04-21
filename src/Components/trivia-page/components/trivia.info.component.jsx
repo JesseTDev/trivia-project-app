@@ -13,9 +13,9 @@ const TriviaInfo = () => {
  <TriviaInfoContainer>
  <h1>Trivia Questions:</h1>
         <h2>User: {username.name}</h2>
-        <h2>Category: {selectedCategory}</h2>
-        <h2>Difficulty: {selectedDifficulty}</h2>
-        <h3>Trivia Points: {score}</h3>
+        <h3>Category: {selectedCategory}</h3>
+        <h3>Difficulty: {selectedDifficulty}</h3>
+        <h2>Trivia Score: {score}</h2>
  </TriviaInfoContainer>
     );
 };

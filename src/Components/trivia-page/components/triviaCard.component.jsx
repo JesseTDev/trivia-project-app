@@ -15,7 +15,6 @@ const TriviaCardContainer = styled.div `
   border-radius: 8px;
   padding: 16px;
   width: 80%; 
-  heigh: 20%;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
   margin-bottom: 16px;
   display: flex;
@@ -41,7 +40,6 @@ const AnswerOptions = styled.div `
   text-align: center;  
   border: 1px solid orange; 
   border-radius: 4px;
-  background-color: ${props => props.inputColor && 'red'};
   cursor: pointer;
   transition: 0.2s ease; 
   &:hover {

@@ -28,7 +28,7 @@ const TriviaPageContainer = styled.div `
         box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
         &:hover {
             background-color: #2cc22c; 
-            border: none;
+            border: 1px solid transparent; 
         }
         &:active {
             background-color:  #23a323; 
@@ -69,17 +69,17 @@ const TriviaPage = () => {
               setRemainingTime(10);
             } else {
               setCompleted(true);
+              setQuizCompleted(true);
             }
           }
         }, 1000);
       
         return () => clearInterval(timer);
-    }, [questionIndex, remainingTime, triviaData, setCompleted]);
+    }, [questionIndex, remainingTime, triviaData, setCompleted, setQuizCompleted]);
 
     return (
 
        <TriviaPageContainer>
-        {/* completed page  */}
         {quizCompleted ? <CompletedTriviaPage /> :
         <> <TriviaInfo /> 
          <TriviaStopClock>Timer: {remainingTime}'s</TriviaStopClock>
