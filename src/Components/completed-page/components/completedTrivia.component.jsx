@@ -48,11 +48,11 @@ const CompletedTriviaPage = () => {
         if (score === 6) {
             return <h2>{username.name.toString()}, Wow great job! You got all 6 out of 6 questions correct!!!</h2>
         } else if (score >= 3) {
-            return <h2>{username.name.toString()}, You got {score} out of 6 questions correct, great score!</h2>
+            return <h2>{username.name.toString()}, you got {score} out of 6 questions correct, great score!</h2>
         } else if (score > 1) {
-            return <h2>{username.name.toString()},You scored {score} out of 6 questions, good try but you can do better!</h2>
+            return <h2>{username.name.toString()}, you got {score} out of 6 questions, good try but you can do better!</h2>
         } else {
-            return <h2>{username.name.toString()}, scored {score} out of 6 questions. Better luck next time, try again!</h2>
+            return <h2>{username.name.toString()}, you got {score} out of 6 questions. Better luck next time, try again!</h2>
         }; 
     }; 
 
