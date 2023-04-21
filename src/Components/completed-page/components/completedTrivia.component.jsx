@@ -50,7 +50,7 @@ const CompletedTriviaPage = () => {
         } else if (score >= 3) {
             return <h2>{username.name.toString()}, You got {score} out of 6 questions correct, great score!</h2>
         } else if (score > 1) {
-            return <h2>{username.name.toString()},You scored {score} out of 6 questions, Good try, you can do better!</h2>
+            return <h2>{username.name.toString()},You scored {score} out of 6 questions, good try but you can do better!</h2>
         } else {
             return <h2>{username.name.toString()}, scored {score} out of 6 questions. Better luck next time, try again!</h2>
         }; 
@@ -63,7 +63,6 @@ const CompletedTriviaPage = () => {
        <h1>Trivia Completed!</h1>
        <h2>Category: {selectedCategory}</h2>
        <h2>Difficulty: {selectedDifficulty}</h2>
-       <h2>Final Score: {score}</h2>
        {completedQuiz()}
        <ReturnBtn onClick={completedHandler}><span><FontAwesomeIcon icon={faArrowRotateBack} /></span><p>Back To Start</p></ReturnBtn>
    </CompletedPageContainer>

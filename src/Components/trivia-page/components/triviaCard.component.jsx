@@ -63,10 +63,11 @@ const TriviaCard = ({question, nextQuestion}) => {
     if(answer === question.correctAnswer) {
       setScore(score + 1); 
       setSelectedAnswer(true);
-      nextQuestion() 
+      nextQuestion(); 
     } if(answer !== question.correctAnswer) {
       console.log('fire')
       setShowIncorrectColor(true)
+      nextQuestion();
     }
   }; 
 
