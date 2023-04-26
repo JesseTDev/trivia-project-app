@@ -10,6 +10,7 @@ const Container = styled.div `
   align-items: center; 
   justify-content: center; 
 `
+
 const TriviaCardContainer = styled.div `
  border: 1px solid #888888;
   border-radius: 8px;
@@ -38,6 +39,7 @@ const AnswerOptions = styled.div `
   width: 400px;
   font-weight: bold;
   text-align: center;  
+  background-color: ${props => props.isIncorrect && 'red'};
   border: 1px solid orange; 
   border-radius: 4px;
   cursor: pointer;
@@ -53,13 +55,14 @@ const AnswerOptions = styled.div `
 const TriviaCard = ({question, nextQuestion}) => {
 
   const [selectedAnswer, setSelectedAnswer] = useState(null); 
+  const [selectedAnswerIndex, setSelectedAnswerIndex] = useState(); 
   const [showInccorectColor, setShowIncorrectColor] = useState(false); 
   const [mergedAnswers, setMergedAnswers] = useState([]); 
   const {score, setScore} = useContext(TriviaContext); 
 
 
  
-  const selectAnswerHandler = (answer) => {
+  const selectAnswerHandler = (answer, index) => {
     if(answer === question.correctAnswer) {
       setScore(score + 1); 
       setSelectedAnswer(true);
@@ -67,7 +70,11 @@ const TriviaCard = ({question, nextQuestion}) => {
     } if(answer !== question.correctAnswer) {
       console.log('fire')
       setShowIncorrectColor(true)
-      nextQuestion();
+      setSelectedAnswerIndex(index)
+     setTimeout(() => {
+      nextQuestion(); 
+      setSelectedAnswerIndex(null); 
+     }, 2000)
     }
   }; 
 
@@ -84,7 +91,7 @@ const TriviaCard = ({question, nextQuestion}) => {
 <TriviaCardContainer>
         <Question>{question.question}</Question>
     <AnswerOptionContainer>
-      {mergedAnswers.map((answer) => <AnswerOptions  inputColor={showInccorectColor} key={answer} onClick={() => {selectAnswerHandler(answer)}}>{answer}</AnswerOptions>)}
+      {mergedAnswers.map((answer, i) => <AnswerOptions  isIncorrect={i === selectedAnswerIndex && showInccorectColor} key={answer} onClick={() => {selectAnswerHandler(answer, i)}}>{answer}</AnswerOptions>)}
     </AnswerOptionContainer>
 </TriviaCardContainer>
 </Container>

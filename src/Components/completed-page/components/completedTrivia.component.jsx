@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { TriviaContext } from "../../../Context/TriviaAppContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -50,12 +50,11 @@ const CompletedTriviaPage = () => {
         } else if (score >= 3) {
             return <h2>{username.name.toString()}, you got {score} out of 6 questions correct, great score!</h2>
         } else if (score > 1) {
-            return <h2>{username.name.toString()}, you got {score} out of 6 questions, good try but you can do better!</h2>
+            return <h2>{username.name.toString()}, you got {score} out of 6 questions, good try, but you can do better!</h2>
         } else {
-            return <h2>{username.name.toString()}, you got {score} out of 6 questions. Better luck next time, try again!</h2>
+            return <h2>{username.name.toString()}, you got {score} out of 6 questions. Better luck next time! Try again!</h2>
         }; 
     }; 
-
     
     return (
        
@@ -66,6 +65,7 @@ const CompletedTriviaPage = () => {
        {completedQuiz()}
        <ReturnBtn onClick={completedHandler}><span><FontAwesomeIcon icon={faArrowRotateBack} /></span><p>Back To Start</p></ReturnBtn>
    </CompletedPageContainer>
+   
     );
 };
 
