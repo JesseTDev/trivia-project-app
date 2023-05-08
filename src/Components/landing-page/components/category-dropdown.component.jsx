@@ -23,12 +23,7 @@ const categories = ['History', 'Science', 'Music', 'General Knowledge', 'Geograp
 const CategoryDropDown = () => {
 
   const {selectedCategory, setSelectedCategory} = useContext(TriviaContext);  
-
-  const {triviaData} = useContext(TriviaContext); 
  
-
-  console.log('cat15', selectedCategory)
-
   const selectCategoryHandler = (e) => {
     setSelectedCategory(e.target.value); 
     console.log(selectedCategory)

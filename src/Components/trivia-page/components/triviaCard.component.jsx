@@ -54,7 +54,6 @@ const AnswerOptions = styled.div `
 
 const TriviaCard = ({question, nextQuestion}) => {
 
-  const [selectedAnswer, setSelectedAnswer] = useState(null); 
   const [selectedAnswerIndex, setSelectedAnswerIndex] = useState(); 
   const [showInccorectColor, setShowIncorrectColor] = useState(false); 
   const [mergedAnswers, setMergedAnswers] = useState([]); 
@@ -65,7 +64,6 @@ const TriviaCard = ({question, nextQuestion}) => {
   const selectAnswerHandler = (answer, index) => {
     if(answer === question.correctAnswer) {
       setScore(score + 1); 
-      setSelectedAnswer(true);
       nextQuestion(); 
     } if(answer !== question.correctAnswer) {
       console.log('fire')
@@ -78,7 +76,6 @@ const TriviaCard = ({question, nextQuestion}) => {
     }
   }; 
 
-  console.log(showInccorectColor)
 
   useEffect(() => {
     const mergedAnswers = [question.correctAnswer, ...question.incorrectAnswers].sort(() => Math.random() - 0.5); 

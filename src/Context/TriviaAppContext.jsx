@@ -13,9 +13,6 @@ export const TriviaProvider = ({ children }) => {
     const [submit, setSubmit] = useState(false);
     const [score, setScore] = useState(0); 
 
-    console.log(triviaData)
-    console.log(selectedCategory)
-
     const getTriviaData = async () => {
         try {
             setLoading(true)
@@ -31,6 +28,7 @@ export const TriviaProvider = ({ children }) => {
 
     useEffect(() => {
         getTriviaData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [selectedCategory, selectedDifficulty]);
 
 
