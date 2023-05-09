@@ -1,6 +1,6 @@
 <h3>Project Overview:</h3>
 
-Quiz Applications where user can select from pre-defined categories. Their high scores are recorded and they are shown the outcome of their answer.
+Quiz Application, where a user can enter their name and select from pre-defined categories and difficulties. Their high scores are recorded and show the outcome of their answer. The user will have 10 seconds per question to answer. The score will be rendered at the end of the quiz with a different message depending on outcome of the score.
 
 <h3>Tech Stack</h3>
 
