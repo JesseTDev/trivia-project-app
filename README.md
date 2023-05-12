@@ -12,7 +12,7 @@ Quiz Application, where a user can enter their name and select from pre-defined 
 
 <h3>Notes</h3>
 
-- React was chosen because I aim to become a junior react developer and for its capablities and ui development.
+- React was chosen because I aim to become a junior react developer and for its capabilities and ui development.
 - For the CSS, it is a mixture of styled-components and MUI. It was outside the scope of this project to configure CRA / styled-components / MUI to work together.
 - useContext was used for state management. This project aimed at learning useContext ordinarly I would of handeld this state differently.
 
