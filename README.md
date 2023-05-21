@@ -16,6 +16,8 @@ Quiz Application, where a user can enter their name and select from pre-defined 
 - For the CSS, it is a mixture of styled-components and MUI. It was outside the scope of this project to configure CRA / styled-components / MUI to work together.
 - useContext was used for state management. This project aimed at learning useContext ordinarly I would of handeld this state differently.
 
+<h3>Netlify Deployment</h3>
+<p>https://64699645b93072000849ebcb--helpful-babka-99135a.netlify.app/</p>
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
