@@ -1,4 +1,4 @@
-import React, {useContext, useState} from "react";
+import React, {useContext} from "react";
 import { TriviaContext } from "./Context/TriviaAppContext";
 // imported components 
 import LandingPage from "./Components/landing-page/landing-page.component";
