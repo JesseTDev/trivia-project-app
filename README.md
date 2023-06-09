@@ -1,5 +1,7 @@
 <h3>Project Overview:</h3>
 
+![Screenshot 2023-06-09 at 10 23 40 pm](https://github.com/JesseTDev/trivia-project-app/assets/121024534/051d7676-474c-4728-9e6b-7907f5e07590)
+
 Quiz Application, where a user can enter their name and select from pre-defined categories and difficulties. Their high scores are recorded and show the outcome of their answer. The user will have 10 seconds per question to answer. The score will be rendered at the end of the quiz with a different message depending on outcome of the score.
 
 <h3>Tech Stack</h3>
